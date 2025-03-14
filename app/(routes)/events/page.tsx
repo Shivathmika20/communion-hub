@@ -15,22 +15,59 @@ import {
 import { createEvent } from "@/actions/events.mutation";
 import { getEvents } from "@/actions/events.query";
 import Image from "next/image";
+import axios from "axios";
 
 const Events = () => {
 	const [date, setDate] = useState<Date | undefined>(new Date());
 	const [events, setEvents] = useState<any>();
 	const [category, setCategory] = useState<string>("");
 	const [isOpen, setIsOpen] = useState(false);
+	const [imageUrl, setImageUrl] = useState<string>("");
+	const [loading, setLoading] = useState(false);
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
-		const res = await createEvent({
-			title: e.target.title.value,
-			date: date || new Date(),
-			location: e.target.location.value,
-			description: e.target.description.value,
-			category: e.target.category.value,
-		});
+
+		if (imageUrl) {
+			const formData = new FormData();
+			formData.append("file", imageUrl);
+			setLoading(true);
+			try {
+				const pinataResponse = await axios.post(
+					"https://api.pinata.cloud/pinning/pinFileToIPFS",
+					formData,
+					{
+						headers: {
+							pinata_api_key: process.env.PINATA_API_KEY,
+							pinata_secret_api_key:
+								process.env.PINATA_SECRET_API_KEY,
+						},
+					}
+				);
+				const pinataData = pinataResponse.data;
+				const uploadedImageUrl = `https://gateway.pinata.cloud/ipfs/${pinataData.IpfsHash}`;
+				setImageUrl(uploadedImageUrl);
+
+				await createEvent({
+					title: e.currentTarget.title.value,
+					date: date || new Date(),
+					location: e.currentTarget.location.value,
+					description: e.currentTarget.description.value,
+					category: e.currentTarget.category.value,
+					imageUrl: uploadedImageUrl,
+				});
+			} catch (error) {
+				console.error(
+					"Error uploading image or creating event:",
+					error
+				);
+			} finally {
+				setLoading(false);
+			}
+		} else {
+			console.error("No image file selected.");
+		}
+
 		console.log(res);
 		e.target.reset();
 		setDate(new Date());
@@ -52,12 +89,12 @@ const Events = () => {
 		},
 	];
 
-	// console.log(category)
-
 	const filterEvents =
 		category === ""
 			? events
-			: events?.filter((event: any) => event.category === category);
+			: events?.filter(
+					(event: { category: string }) => event.category === category
+			  );
 	console.log(filterEvents);
 
 	useEffect(() => {
@@ -163,7 +200,19 @@ const Events = () => {
 											<Input
 												type="file"
 												placeholder="Event Image"
-												name="url"
+												name="image"
+												accept="image/*"
+												onChange={(e) => {
+													const file =
+														e.target.files?.[0];
+													if (file) {
+														setImageUrl(
+															URL.createObjectURL(
+																file
+															)
+														);
+													}
+												}}
 												required
 											/>
 											<Textarea
