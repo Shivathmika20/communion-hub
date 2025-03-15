@@ -51,7 +51,7 @@ const Events = () => {
       }
 
       setImageUrl(url);
-	  console.log(formData.get("title") );
+	    console.log(formData.get("title") );
 
       const res = await createEvent({
         title:e.target.title.value ,
@@ -210,44 +210,44 @@ const Events = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-		  {filterEvents && filterEvents.length > 0 ? (
-				filterEvents.map((event: any) => (
-					<div
-					key={event.id}
-					className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow"
-					>
-					<div className="relative h-48">
-						<Image
-						src={event?.imageUrl}
-						alt={`Event ${event?.id}`}
-						fill
-						className="object-cover"
-						/>
-					</div>
-					<div className="px-6 py-4">
-						<div className="flex justify-between items-center gap-2 mb-2">
-						<div className="text-sm text-blue-600 font-medium capitalize bg-blue-600/20 px-2 rounded-full">
-							{event.category}
-						</div>
-						<div className="flex items-center gap-2 ">
-							<p className="text-gray-600 ">{event.location} -</p>
-							<p className="text-gray-600 ">
-							{new Date(event.date).toLocaleDateString()}
-							</p>
-						</div>
-						</div>
-						<h3 className="text-xl font-semibold text-gray-900 mb-2">
-						{event.title}
-						</h3>
-						<p className="line-clamp-3">{event?.description}</p>
-					</div>
-					</div>
-				))
-				) : (
-				<h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">
-					No events found for this category
-				</h1>
-				)}
+            {filterEvents && filterEvents.length > 0 ? (
+              filterEvents.map((event: any) => (
+                <div
+                key={event.id}
+                className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow"
+                >
+                <div className="relative h-48">
+                  <Image
+                  src={event?.imageUrl}
+                  alt={`Event ${event?.id}`}
+                  fill
+                  className="object-cover"
+                  />
+                </div>
+                <div className="px-6 py-4">
+                  <div className="flex justify-between items-center gap-2 mb-2">
+                  <div className="text-sm text-blue-600 font-medium capitalize bg-blue-600/20 px-2 rounded-full">
+                    {event.category}
+                  </div>
+                  <div className="flex items-center gap-2 ">
+                    <p className="text-gray-600 ">{event.location} -</p>
+                    <p className="text-gray-600 ">
+                    {new Date(event.date).toLocaleDateString()}
+                    </p>
+                  </div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  {event.title}
+                  </h3>
+                  <p className="line-clamp-3">{event?.description}</p>
+                </div>
+                </div>
+              ))
+              ) : (
+              <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">
+                No events found for this category
+              </h1>
+              )}
 
           </div>
         </div>
