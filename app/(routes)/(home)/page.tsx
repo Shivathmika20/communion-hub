@@ -7,14 +7,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getEvents } from "@/actions/events.query";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-  } from "@/components/ui/dialog"
+
   
 
 export default function Home() {

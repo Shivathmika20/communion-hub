@@ -70,6 +70,7 @@ const Events = () => {
 
     e.target.reset();
     setDate(new Date());
+	console.log(date);
     setIsOpen(false);
   };
 
@@ -217,7 +218,7 @@ const Events = () => {
 					>
 					<div className="relative h-48">
 						<Image
-						src={`${event?.imageUrl}`}
+						src={event?.imageUrl}
 						alt={`Event ${event?.id}`}
 						fill
 						className="object-cover"
