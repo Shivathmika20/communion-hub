@@ -8,7 +8,8 @@ export async function getEvents(){
                 orderBy:{
                     date:'asc'
                 },
-take: 20,
+                  select: { id: true, title: true, date: true, location: true, description: true, imageUrl: true, category: true },
+                  take: 20,
             }
         )
         return events
