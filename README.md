@@ -38,11 +38,15 @@ Built with Next.js, Tailwind CSS, Prisma, MongoDB, and Pinata (IPFS), the platfo
 
 🏗 Scalable Backend - Prisma ORM with MongoDB ensures efficient data handling.
 
+## Live Demo
+
+https://communionhub-project.vercel.app/
+
 ## Tech Stack
 
 -Frontend: Next.js, TypeScript, Tailwind CSS, ShadCN
 
--Backend: Prisma ORM, MongoDB
+-Backend: Prisma ORM, Supabase(PostgreSQL)
 
 -Storage(images): Pinata (IPFS)
 
@@ -51,8 +55,6 @@ Built with Next.js, Tailwind CSS, Prisma, MongoDB, and Pinata (IPFS), the platfo
 Ensure you have the following installed:
 
 Node.js (LTS version recommended)
-
-MongoDB (Local or cloud instance)
 
 Prisma
 
