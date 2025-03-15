@@ -20,19 +20,29 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Overview
+## CommunionHub
 
-This project is built using modern web technologies, including Tailwind CSS, ShadCN, Prisma, MongoDB, and Pinata for IPFS storage. 
+CommunionHub is a community-driven platform designed to bring people together through meaningful events. 
 
-The goal is to create a seamless and efficient application with a responsive UI and robust backend.
+Built with Next.js, Tailwind CSS, Prisma, MongoDB, and Pinata (IPFS), the platform ensures a seamless and efficient user experience with a responsive UI and a robust backend.
+
+## Features
+
+🗓️ Event Management - Browse, create, and manage community events.
+
+🌍 Community Engagement - Connect with people through religious, social, and charity events.
+
+📦 Decentralized Storage - Securely store and retrieve images using Pinata (IPFS).
+
+⚡ Fast & Responsive UI - Built with Tailwind CSS for a smooth user experience.
+
+🏗 Scalable Backend - Prisma ORM with MongoDB ensures efficient data handling.
 
 ## Tech Stack
 
 -Frontend: Next.js, TypeScript, Tailwind CSS, ShadCN
 
-
 -Backend: Prisma ORM, MongoDB
-
 
 -Storage(images): Pinata (IPFS)
 
@@ -40,13 +50,13 @@ The goal is to create a seamless and efficient application with a responsive UI 
 
 Ensure you have the following installed:
 
-Node.js 
+Node.js (LTS version recommended)
 
-MongoDB (local or cloud instance)
+MongoDB (Local or cloud instance)
 
-Prisma 
+Prisma
 
-Pinata 
+Pinata Account (For IPFS storage)
 
 ## Learn More
 
@@ -54,7 +64,7 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- 
+- [https://www.prisma.io/docs]-prisma documentation
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
