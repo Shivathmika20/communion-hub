@@ -8,6 +8,7 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getEvents } from "@/actions/events.query";
 
+
   
 
 export default function Home() {

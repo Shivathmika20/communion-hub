@@ -11,6 +11,7 @@ type EventTypes={
     imageUrl:string;
 }
 
+
 export const createEvent=async ({title,date,location,description,category,imageUrl}:EventTypes)=>{
     try{
       const res= await prisma.event.create({
