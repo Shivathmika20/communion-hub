@@ -1,6 +1,10 @@
 'use server'
 import {prisma} from "@/lib/prisma";
 
+export const config = {
+  runtime: "edge",
+};
+
 export async function getEvents(){
     try{
         const events= await prisma.event.findMany(
