@@ -7,7 +7,8 @@ export async function getEvents(){
             {
                 orderBy:{
                     date:'asc'
-                }
+                },
+take: 20,
             }
         )
         return events
