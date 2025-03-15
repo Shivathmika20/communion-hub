@@ -20,5 +20,6 @@ model Event {
   location  String
   category  String
   description String
+  imageUrl   String?
   createdAt DateTime @default(now())
 }

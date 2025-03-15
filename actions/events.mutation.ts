@@ -8,10 +8,10 @@ type EventTypes={
     location:string;
     description:string;
     category:string;
-    
+    imageUrl:string;
 }
 
-export const createEvent=async ({title,date,location,description,category}:EventTypes)=>{
+export const createEvent=async ({title,date,location,description,category,imageUrl}:EventTypes)=>{
     try{
       const res= await prisma.event.create({
             data:{
@@ -20,7 +20,7 @@ export const createEvent=async ({title,date,location,description,category}:Event
                 location,
                 description,
                 category,
-               
+                imageUrl,
             }
         })
         return res

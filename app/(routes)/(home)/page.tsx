@@ -7,14 +7,28 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getEvents } from "@/actions/events.query";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+  } from "@/components/ui/dialog"
+  
 
 export default function Home() {
-	const [events, setEvents] = useState([]);
+	const [events, setEvents] = useState<any>();
 
 	useEffect(() => {
 		const fetchEvents = async () => {
 			try {
 				const data = await getEvents();
+				console.log("Fetched events:", data);
+				if (!data || data.length === 0) {
+					console.warn("No events received!");
+				}
+				console.log(data);
 				setEvents(data);
 			} catch (error) {
 				console.error("Error fetching events:", error);
@@ -23,9 +37,11 @@ export default function Home() {
 		fetchEvents();
 	}, []);
 
+	console.log(events);
+
 	return (
 		<div className=" bg-gray-50">
-			<div className="w-full py-12 lg:py-24">
+			<div className="w-full py-12 lg:py-18">
 				<GridPattern
 					width={30}
 					height={30}
@@ -105,40 +121,44 @@ export default function Home() {
 					</div>
 
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-						{events.map((event: any) => (
-							<div
-								key={event.id}
-								className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow"
-							>
-								<div className="relative h-48">
-									<Image
-										src={`/placeholder.svg?height=200&width=400`}
-										alt={`Event ${event.id}`}
+								{events?.map((event: any) => (
+								  <div
+									key={event.id}
+									className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow"
+								  >
+									<div className="relative h-48">
+									  <Image
+										src={`${event?.imageUrl}`}
+										alt={`Event ${event?.id}`}
 										fill
 										className="object-cover"
-									/>
-								</div>
-								<div className="p-6">
-									<div className="text-sm text-blue-600 font-medium mb-2">
-										{event.category}
+									  />
 									</div>
-									<h3 className="text-xl font-semibold text-gray-900 mb-2">
+									<div className="px-6 py-4">
+									  <div className="flex justify-between items-center gap-2 mb-2"> 
+										<div className="text-sm text-blue-600 font-medium capitalize bg-blue-600/20 px-2 rounded-full">
+											{event.category}
+										</div>
+										<div className="flex items-center gap-2 ">
+										<p className="text-gray-600 ">{event.location} -</p>
+										<p className="text-gray-600 ">
+											{event.date.toLocaleDateString()}
+										</p>
+										</div>
+									  </div>
+									  <h3 className="text-xl font-semibold text-gray-900 mb-2">
 										{event.title}
-									</h3>
-									<p className="text-gray-600 mb-4">
-										{event.description}
-									</p>
-									<Button
-										variant="outline"
-										className="w-full"
-									>
-										Learn More
-									</Button>
-								</div>
+									  </h3>
+									  
+									   <p className="line-clamp-3  ">
+										{event?.description}
+									   </p>
+									  
+									</div>
+								  </div>
+								))}
+							  </div>
 							</div>
-						))}
-					</div>
-				</div>
 			</div>
 		</div>
 	);
